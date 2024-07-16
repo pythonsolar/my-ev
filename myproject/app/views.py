@@ -79,6 +79,8 @@ def chargeboxdetail(request, pk):
     
    # transaction_starts = [connector.transaction_starts.all() for connector in connectors]
     transactions = []
+    dategraph=""
+    powergraph=""
 
     transaction_starts = [item for connector in connectors for item in connector.transaction_starts.all()]
     print(transaction_starts)
@@ -94,6 +96,8 @@ def chargeboxdetail(request, pk):
 
         print(temp)
         transactions.append(temp)
+        dategraph += stoptimestamp.strftime("%Y-%m-%d %H:%M:%S") + ","
+        powergraph += str(temp['value']) + ","
 
-    return render(request, "chargeboxdetail.html", {"chargebox": chargebox[0],"transaction_starts":transactions})
+    return render(request, "chargeboxdetail.html", {"chargebox": chargebox[0],"transaction_starts":transactions,"dategraph":dategraph,"powergraph":powergraph})
 

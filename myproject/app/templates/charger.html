@@ -1,23 +1,28 @@
+{% load static %}
+
 <html>
-    <head><link
+    <head>
+        <!-- <link
         href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
         rel="stylesheet"
         integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
         crossorigin="anonymous"
-      />
-      <script
+      /> -->
+      <link rel='stylesheet' href="{% static 'css/bootstrap.min.css' %}" />
+
+      <!-- <script
         src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
         crossorigin="anonymous"
-      ></script> 
+      ></script>  -->
     
     <style>
         .cardcharger{
             border-radius: 15px;
-            background-color: rgb(173, 84, 20);
-           
+            background-color: rgb(201, 136, 219);
+            cursor: pointer;
             padding: 50px 10px;
-            margin: 25px;
+            margin: 20px;
             box-shadow: 0 2px 2px 0 rgb(0 0 0 / 20%), 0 4px 10px 0 rgb(0 0 0 / 19%);
 
         }
@@ -27,20 +32,84 @@
         }
 
         .cardtext{
-            color: #e3d1d1;
+            color: #1b1919;
             font-size: 20px;
             font-weight: 500;
+            text-decoration-line: none !important;
         }
 
+        a:visited {
+            text-decoration-line: none !important;
+        }
     </style>
     
 
 
-
-    </head>
+    
 
 
       <body>
+        <header>
+            <div class="px-3 py-2 text-bg-dark border-bottom">
+              <div class="container">
+                <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+                  <a href="/" class="d-flex align-items-center my-2 my-lg-0 me-lg-auto text-white text-decoration-none keychainify-checked">
+                    <!-- <svg class="bi me-2" width="40" height="32" role="img" aria-label="Bootstrap"><use xlink:href="#bootstrap"></use></svg> -->
+                    <img src="/static/image/image2.jpeg" style="width: 100px;"  />
+                    
+                </a>
+        
+                  <!-- <ul class="nav col-12 col-lg-auto my-2 justify-content-center my-md-0 text-small">
+                    <li>
+                      <a href="#" class="nav-link text-secondary keychainify-checked">
+                        <svg class="bi d-block mx-auto mb-1" width="24" height="24"><use xlink:href="#home"></use></svg> 
+                        <img src="{ % static 'image/setting.png' % }"/>
+                        <img src="/static/image/setting.png" style="width: 50px;"  />
+                        Home
+                      </a>
+                    </li>
+                    <li>
+                      <a href="#" class="nav-link text-white keychainify-checked">
+                        <svg class="bi d-block mx-auto mb-1" width="24" height="24"><use xlink:href="#speedometer2"></use></svg>
+                        Dashboard
+                      </a>
+                    </li>
+                    <li>
+                      <a href="#" class="nav-link text-white keychainify-checked">
+                        <svg class="bi d-block mx-auto mb-1" width="24" height="24"><use xlink:href="#table"></use></svg>
+                        Orders
+                      </a>
+                    </li>
+                    <li>
+                      <a href="#" class="nav-link text-white keychainify-checked">
+                        <svg class="bi d-block mx-auto mb-1" width="24" height="24"><use xlink:href="#grid"></use></svg>
+                        Products
+                      </a>
+                    </li>
+                    <li>
+                      <a href="#" class="nav-link text-white keychainify-checked">
+                        <svg class="bi d-block mx-auto mb-1" width="24" height="24"><use xlink:href="#people-circle"></use></svg>
+                        Customers
+                      </a>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <div class="px-3 py-2 border-bottom mb-3">
+              <div class="container d-flex flex-wrap justify-content-center">
+                <form class="col-12 col-lg-auto mb-2 mb-lg-0 me-lg-auto" role="search">
+                  <input type="search" class="form-control" placeholder="Search..." aria-label="Search">
+                </form>
+        
+                <div class="text-end">
+                  <button type="button" class="btn btn-light text-dark me-2">Login</button>
+                  <button type="button" class="btn btn-primary">Sign-up</button> -->
+                </div>
+              </div>
+            </div>
+          </header>
+
         ChargerDetail
 
         <div class="container">
@@ -50,7 +119,7 @@
                 {% for chargebox in chargeboxes %}
                 
                 <div class="col-lg-2">
-                    <a href="chargeboxdetail/{{ chargebox.charge_box_id }}">
+                    <div onclick="location.href='chargeboxdetail/{{ chargebox.charge_box_id }}'">
 
                     <div class="cardcharger">
                         
@@ -60,7 +129,7 @@
                         <div>{{chargebox.address.city}}</div>
             
                     </div>
-                    </a>
+                </div>
 
                 </div>
                 
@@ -75,7 +144,7 @@
 
 
 
-
+        <script src="{% static 'js/bootstrap.bundle.min.js' %}" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
       </body>
         
 </html>

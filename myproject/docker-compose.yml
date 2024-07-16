@@ -1,0 +1,60 @@
+# version: "3.9"
+
+services:
+  db:
+    image: mariadb:latest
+    container_name: mariadb
+    networks:
+      - myproject_network
+    environment:
+      MYSQL_ROOT_PASSWORD: example_root_password
+      MYSQL_DATABASE: example_db
+      MYSQL_USER: example_user
+      MYSQL_PASSWORD: example_password
+    ports:
+      - "3306:3306"
+    volumes:
+      - db_data:/var/lib/mysql
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    container_name: pma
+    ports:
+      - 8080:80
+    deploy:
+      resources:
+        limits:
+          cpus: "0.1"
+          memory: 200M
+    environment:
+      PMA_HOST: db
+      PMA_PORT: 3306
+      PMA_ARBITRARY: 1
+    networks:
+      - myproject_network
+  web:
+    build: .
+    container_name: django
+    restart: always
+    command: python manage.py runserver 0.0.0.0:8000
+    networks:
+      - myproject_network
+    environment:
+      DJANGO_SECRET_KEY: "django-insecure-yj*6#8fcsi=u+ibwv_4zg9l*=xl_0qpv97=e1cfve8_5we)fc_"
+      DATABASE_NAME: example_db
+      DATABASE_USER: example_user
+      DATABASE_PASSWORD: example_password
+      DATABASE_HOST: db
+      DATABASE_PORT: 3306
+    volumes:
+      - .:/usr/src/app
+    ports:
+      - "80:8000"
+    depends_on:
+      - db
+
+volumes:
+  db_data:
+
+networks:
+  myproject_network:
+    driver: bridge

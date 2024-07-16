@@ -1,10 +1,12 @@
-
-
-from datetime import datetime
 from django.shortcuts import render
+from .models import *
+from datetime import datetime
 
 #from .models import ChargeBox, Device, User
-from .models import Address, ChargeBox, ConnectorMeterValue
+# from .models import Address, ChargeBox, ConnectorMeterValue
+
+def Home(request):
+    return render(request, 'app/home.html')
 
 
 #def index(request):
